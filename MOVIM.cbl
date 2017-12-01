@@ -71,6 +71,7 @@
 
        screen section.
        01 tela-inicial.
+       02 BLANK SCREEN.
           02 line 2 col 2 value "Santos,    de            de     .".
           02 line 4 col 30 value "Nome da Empresa".
           02 line 6 col 25 value "Controle de movimentação dos Bens".
@@ -82,6 +83,7 @@
           02 line 13 col 20 value "5 - Sair ".
           02 Line 18 col 5 value "Digite Sua Escolha".
        01 Tela-inclusao.
+       02 BLANK SCREEN.
           02 line 2 col 2 value "Santos,    de            de     .".
           02 line 4 col 30 value "Nome da Empresa".
           02 line 6 col 29 value "Controle de Patrimonio".
@@ -91,12 +93,14 @@
           02 line 9 col 45 VALUE "Data de Movimentação".
           02 line 11 col 45 VALUE "Estatus da Movimentação".
        01 Tela-esclusao.
+       02 BLANK SCREEN.
           02 line 2 col 0 value "Santos,    de            de     .".
           02 line 3 col 27 value "Nome da Empresa".
           02 line 4 col 25 value "Controle de Patrimonio".
           02 line 5 col 20 value "EXCLUSAO DE BEMS" highlight.
           02 line 9 col 3 VALUE "Codigo do BEM".
        01 Tela-consulta.
+       02 BLANK SCREEN.
           02 line 2 col 2 value "Santos,    de            de     .".
           02 line 4 col 30 value "Nome da Empresa".
           02 line 6 col 29 value "Controle de Patrimonio".
@@ -134,7 +138,7 @@
 
       *-----------------------------------------------------------------
        abertura.
-           display ESPACO at 0101.
+           display erase at 0101.
            display tela-inicial at 0101.
            Perform mostra-data.
            accept op at 1845.
@@ -275,7 +279,7 @@
        stop " ".
 
        consulta.
-           display espaco at 0101.
+           display erase at 0101.
            display Tela-consulta at 0101.
            display "Consulta de Bems" at 0730 with highlight.
            perform le-dados.

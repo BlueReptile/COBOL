@@ -122,7 +122,7 @@
       *-------------------------------------------------------------------------*
        Menu.
 
-           DISPLAY ESPACO AT 0101.
+           DISPLAY erase at 0101.
            DISPLAY TELA-MENU.
            PERFORM MOSTRA-DATA.
            ACCEPT OP AT 2048.
@@ -157,12 +157,12 @@
        finaliza.
 
             CLOSE ARQ-LOC.
-            EXIT PROGRAM.
+            exit program.
       *-------------------------------------------------------------------------*
 
        Tela-entrada.
 
-           DISPLAY ESPACO AT 0101.
+           DISPLAY erase at 0101.
            DISPLAY TELA.
            PERFORM MOSTRA-DATA.
 

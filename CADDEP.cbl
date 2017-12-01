@@ -80,6 +80,7 @@
            02 DIV-T pic x(10) occurs 5 times.
        screen section.
        01 tela-inicial.
+       02 BLANK SCREEN.
           02 line 2 col 2 value "Santos,    de            de     .".
           02 line 4 col 30 value "Nome da Empresa".
           02 line 6 col 29 value "Controle de Patrimonio".
@@ -91,6 +92,7 @@
           02 line 15 col 33 value "5 - Sair ".
           02 Line 18 col 5 value "Digite Sua Escolha".
        01 Tela-inclusao.
+       02 BLANK SCREEN.
           02 line 2 col 2 value "Santos,    de            de     .".
           02 line 4 col 30 value "Nome da Empresa".
           02 line 6 col 29 value "Controle de Patrimonio".
@@ -100,6 +102,7 @@
           02 line 9 col 45 VALUE "Nome do Responsavel".
           02 line 11 col 45 VALUE "Numero da Divisao".
        01 Tela-alteracao.
+       02 BLANK SCREEN.
           02 line 2 col 2 value "Santos,    de            de     .".
           02 line 4 col 30 value "Nome da Empresa".
           02 line 6 col 29 value "Controle de Patrimonio".
@@ -109,12 +112,14 @@
           02 line 9 col 45 VALUE "Nome do Responsavel".
           02 line 11 col 45 VALUE "Numero da Divisao".
        01 Tela-esclusao.
+       02 BLANK SCREEN.
           02 line 2 col 0 value "Santos,    de            de     .".
           02 line 3 col 27 value "Nome da Empresa".
           02 line 4 col 25 value "Controle de Patrimonio".
           02 line 5 col 20 value "EXCLUSAO DE DEPARTAMENTOS" highlight.
           02 line 9 col 3 VALUE "Codigo do Departamento".
        01 Tela-consulta.
+       02 BLANK SCREEN.
           02 line 2 col 2 value "Santos,    de            de     .".
           02 line 4 col 30 value "Nome da Empresa".
           02 line 6 col 29 value "Controle de Patrimonio".
@@ -152,7 +157,7 @@
 
       *-----------------------------------------------------------------
        abertura.
-           display espaco at 0101.
+           display erase at 0101.
            display tela-inicial.
            Perform mostra-data.
            accept op at 1825.
@@ -189,7 +194,7 @@
            perform continua.
       *-----------------------------------------------------------------
        tela-inclu.
-          display espaco at 0101.
+          display erase at 0101.
           display Tela-inclusao.
           perform mostra-data.
       *-----------------------------------------------------------------
@@ -268,7 +273,7 @@
       *-----------------------------------------------------------------
        exclusao.
            perform inicializar.
-           display espaco at 0101.
+           display erase at 0101.
            display Tela-esclusao.
            perform inicializar.
            perform le-dados.
@@ -292,7 +297,7 @@
        stop " ".
       *-----------------------------------------------------------------
        consulta.
-           display espaco at 0101.
+           display erase at 0101.
            display Tela-consulta.
            display "Consulta de Registro" at 0730 with highlight.
            perform le-dados.
@@ -332,7 +337,7 @@
       *-----------------------------------------------------------------
        alteracao.
            perform inicializar.
-           display ESPACO at 0101.
+           display erase at 0101.
            display Tela-alteracao.
            perform le-dados.
            if wigual <> 1

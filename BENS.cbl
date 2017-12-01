@@ -84,6 +84,7 @@
 
        screen section.
        01 tela-inicial.
+       02 BLANK SCREEN.
           02 line 2 col 2 value "Santos,    de            de     .".
           02 line 4 col 30 value "Nome da Empresa".
           02 line 6 col 25 value "Cadastro dos Bens Patrimoniais".
@@ -96,6 +97,7 @@
           02 line 13 col 20 value "6 - Sair ".
           02 Line 18 col 5 value "Digite Sua Escolha".
        01 Tela-inclusao.
+       02 BLANK SCREEN.
           02 line 2 col 2 value "Santos,    de            de     .".
           02 line 4 col 30 value "Nome da Empresa".
           02 line 6 col 29 value "Controle de Patrimonio".
@@ -107,6 +109,7 @@
           02 line 13 col 3 VALUE "Valor da Compra".
           02 line 13 col 45 VALUE "O Nº da Nota Fiscal".
        01 Tela-alteracao.
+       02 BLANK SCREEN.
           02 line 2 col 2 value "Santos,    de            de     .".
           02 line 4 col 30 value "Nome da Empresa".
           02 line 6 col 29 value "Controle de Patrimonio".
@@ -118,12 +121,14 @@
           02 line 13 col 3 VALUE "Valor da Compra".
           02 line 13 col 45 VALUE "O Nº da Nota Fiscal".
        01 Tela-esclusao.
+       02 BLANK SCREEN.
           02 line 2 col 0 value "Santos,    de            de     .".
           02 line 3 col 27 value "Nome da Empresa".
           02 line 4 col 25 value "Controle de Patrimonio".
           02 line 5 col 20 value "EXCLUSAO DE BEMS" highlight.
           02 line 9 col 3 VALUE "Codigo do BEM".
        01 Tela-consulta.
+       02 BLANK SCREEN.
           02 line 2 col 2 value "Santos,    de            de     .".
           02 line 4 col 30 value "Nome da Empresa".
           02 line 6 col 29 value "Controle de Patrimonio".
@@ -135,6 +140,7 @@
           02 line 13 col 3 VALUE "Valor da Compra".
           02 line 13 col 45 VALUE "O Nº da Nota Fiscal".
        01 Tela-consulta-D.
+       02 BLANK SCREEN.
           02 line 2 col 2 value "Santos,    de            de     .".
           02 line 4 col 30 value "Nome da Empresa".
           02 line 6 col 29 value "Controle de Patrimonio".
@@ -173,7 +179,7 @@
 
       *-----------------------------------------------------------------
        abertura.
-           display ESPACO at 0101.
+           display erase at 0101.
            display tela-inicial at 0101.
            Perform mostra-data.
            accept op at 1845.
@@ -212,8 +218,7 @@
            perform continua.
       *-----------------------------------------------------------------
        tela-inclu.
-          display ESPACO at 0101.
-          display ESPACO at 0101.
+          display erase at 0101.
           display Tela-inclusao at 0101.
 
           perform mostra-data.
@@ -307,7 +312,7 @@
 
        exclusao.
            perform inicializar.
-           display ESPACO at 0101.
+           display erase at 0101.
            display Tela-esclusao at 0101.
            perform inicializar.
            perform le-dados.
@@ -331,7 +336,7 @@
        stop " ".
 
        consulta.
-           display ESPACO at 0101.
+           display erase at 0101.
            display Tela-consulta at 0101.
            display "Consulta de Bems" at 0730 with highlight.
            perform le-dados.
@@ -339,7 +344,7 @@
 
 
        consulta-d.
-           display ESPACO at 0101.
+           display erase at 0101.
            display Tela-consulta-d at 0101.
            display "Consulta de Bems" at 0730 with highlight.
            perform le-dados.
@@ -382,7 +387,7 @@
 
        alteracao.
            perform inicializar.
-           display ESPACO at 0101.
+           display erase at 0101.
            display Tela-alteracao.
            perform le-dados.
            if wigual <> 1

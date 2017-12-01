@@ -1,0 +1,6 @@
+C:\Users\callm\OneDrive\Documentos\Visual Studio 2017\Projects\ConsoleApplication3\obj\Debug\ConsoleApplication3.cblprojResolveAssemblyReference.cache
+C:\Users\callm\OneDrive\Documentos\Visual Studio 2017\Projects\ConsoleApplication3\obj\Debug\ConsoleApplication3.cblproj.CoreCompileInputs.cache
+C:\Users\callm\OneDrive\Documentos\Visual Studio 2017\Projects\ConsoleApplication3\bin\Debug\ConsoleApplication3.exe
+C:\Users\callm\OneDrive\Documentos\Visual Studio 2017\Projects\ConsoleApplication3\bin\Debug\ConsoleApplication3.pdb
+C:\Users\callm\OneDrive\Documentos\Visual Studio 2017\Projects\ConsoleApplication3\obj\Debug\ConsoleApplication3.exe
+C:\Users\callm\OneDrive\Documentos\Visual Studio 2017\Projects\ConsoleApplication3\obj\Debug\ConsoleApplication3.pdb
