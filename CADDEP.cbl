@@ -1,8 +1,16 @@
+      *TO-DO
+      *Consulta não Mostra o departamento, mas mostra o resto
+      *na tela de cadastro esta comendo um pedaço do texto, acho que é
+      *por causa do tamanho da variavel que tem que ser aceita
+
        Identification Division.
        Program-Id. CADDPTO.
 
        Environment Division.
-       special-names.   decimal-point is comma.
+       CONFIGURATION SECTION.
+       special-names.
+       decimal-point is comma.
+
        input-output section.
        file-control.
            select DEPTOS assign to disk
@@ -12,26 +20,26 @@
            alternate record key NOME-DEPTO with duplicates
            file status arqst.
 
-       
+
        data division.
        file section.
-       fd  DEPTOS 
-       value of file-id is "DEPTOS.txt".
+       fd  DEPTOS
+       value of file-id is "DEPTOS.DEP".
 
- 
-       
+
+
        01 reg-dptos.
            02 Chaves.
-               03 CODIGO-DEPTO   pic x(04). 
+               03 CODIGO-DEPTO   pic x(04).
            02 NOME-DEPTO         pic x(30).
            02 RESPONSAVEL        pic x(30).
            02 DIVISAO            pic x(02).
        01 codidpt  pic x(04).
-       
+
               WORKING-STORAGE SECTION.
        01 reg-dptos-e.
            02 Chaves-e.
-               03 CODIGO-DEPTO-e   pic zzzz(04). 
+               03 CODIGO-DEPTO-e   pic zzzz(04).
            02 NOME-DEPTO-e         pic x(30).
            02 RESPONSAVEL-e        pic x(30).
            02 DIVISAO-e            pic zz(02).
@@ -61,7 +69,7 @@
        01 wigual       pic 9 value zeros.
        01 espaco       pic x(50) value spaces.
        01 op-continua  pic x(1)  value spaces.
-       
+
        01 DIVISAO.
            02 filler pic x(10) value "PRESIDENCIA".
            02 filler pic x(10) value "DIRETORIA".
@@ -115,13 +123,13 @@
           02 line 11 col 3 VALUE "Nome do Departamento".
           02 line 9 col 45 VALUE "Nome do Responsavel".
           02 line 11 col 45 VALUE "Numero da Divisao".
-          
+
        01 MENSAGENS.
            02 line 21 col 10 value "ERRO: Valor Invalido".
            02 line 21 col 10 value "ERRO: Depto nao encontrado".
-           
+
        procedure division.
-       
+
       *-----------------------------------------------------------------
        Inicio.
            Perform abre-arq.
@@ -132,17 +140,22 @@
          exit program.
       *-----------------------------------------------------------------
        abre-arq.
-           open i-o DEPTOS.
-           if arqst not = "00"
-               display "erro de abertura" at 2110
-               close DEPTOS
-               open output DEPTOS.
+
+                  OPEN I-O DEPTOS.
+           IF ARQST NOT = "00"
+               DISPLAY "ERRO DE ABERTURA"
+               STOP " "
+               CLOSE DEPTOS
+               OPEN OUTPUT DEPTOS
+               CLOSE DEPTOS
+               OPEN I-O DEPTOS.
+
       *-----------------------------------------------------------------
        abertura.
-           display erase at 0101.
+           display espaco at 0101.
            display tela-inicial.
            Perform mostra-data.
-           accept op at 1820.
+           accept op at 1825.
            perform trata-opcao.
       *-----------------------------------------------------------------
        trata-opcao.
@@ -159,7 +172,7 @@
            when "5"
                perform sai.
       *-----------------------------------------------------------------
-           
+
        mostra-data.
            move function current-date to data-sis.
            display dia at 0213.
@@ -176,14 +189,15 @@
            perform continua.
       *-----------------------------------------------------------------
        tela-inclu.
-	      display erase at 0101.
-	      display Tela-inclusao.
+          display espaco at 0101.
+          display Tela-inclusao.
           perform mostra-data.
       *-----------------------------------------------------------------
        inicializar.
-	   move spaces to op op-continua salva.
-           move spaces to CODIGO-DEPTO-e NOME-DEPTO-e.
-           move spaces to RESPONSAVEL-e.   
+       move spaces to op op-continua salva.
+           move ZEROS to CODIGO-DEPTO-e.
+           move spaces to NOME-DEPTO-e.
+           move spaces to RESPONSAVEL-e.
            move zeros to wigual DIVISAO-e.
            display espaco at 2321.
       *-----------------------------------------------------------------
@@ -191,13 +205,13 @@
            perform testa-coddpt      until CODIGO-DEPTO-e  not = spaces.
            perform testa-nomedpt     until NOME-DEPTO-e    not = spaces.
            perform testa-responsavel until RESPONSAVEL-e   not = spaces.
-           perform testa-divisao     until 
+           perform testa-divisao     until
            DIVISAO-e not = spaces.
-           
+
       *-----------------------------------------------------------------
        testa-coddpt.
            move 1 to wigual
-           move spaces to CODIGO-DEPTO-e.
+           move ZEROS to CODIGO-DEPTO-e.
            accept CODIGO-DEPTO-e at 0926 with prompt auto
            if CODIGO-DEPTO-e = spaces or "0000" then
                 display espaco at 2321
@@ -207,7 +221,7 @@
                 move CODIGO-DEPTO-e to CODIGO-DEPTO
                 read DEPTOS not invalid key perform ja-cadastrado.
       *-----------------------------------------------------------------
-       
+
        ja-cadastrado.
            display espaco at 2321
            display "Codigo ja cadastrado" at 2321
@@ -220,7 +234,7 @@
                display espaco at 2321
                 display "Digite o nome do departamento." at 2321.
 
-       
+
       *-----------------------------------------------------------------
        testa-responsavel.
            accept RESPONSAVEL-e at 0968
@@ -254,7 +268,7 @@
       *-----------------------------------------------------------------
        exclusao.
            perform inicializar.
-           display erase at 0101.
+           display espaco at 0101.
            display Tela-esclusao.
            perform inicializar.
            perform le-dados.
@@ -275,10 +289,10 @@
       *-----------------------------------------------------------------
        estuda-erro.
            display "Codigo nao encontrado." at 2321.
-	   stop " ".
+       stop " ".
       *-----------------------------------------------------------------
        consulta.
-           display erase at 0101.
+           display espaco at 0101.
            display Tela-consulta.
            display "Consulta de Registro" at 0730 with highlight.
            perform le-dados.
@@ -318,7 +332,7 @@
       *-----------------------------------------------------------------
        alteracao.
            perform inicializar.
-           display erase at 0101.
+           display ESPACO at 0101.
            display Tela-alteracao.
            perform le-dados.
            if wigual <> 1
